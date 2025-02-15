@@ -1,13 +1,18 @@
-const express = require('express');
+const express = require('express')
+const dotenv = require("dotenv")
 const { dbConnection } = require('./config/db')
 
 const app = express();
-const PORT = process.env.PORT ; // Usa el puerto del .env o 3000 por defecto
+const PORT = process.env.PORT 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 dbConnection()
+
+app.get('/', (req, res) => {
+    res.send(`<h1>Bienvenido a la tienda`)
+})
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
