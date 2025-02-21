@@ -7,10 +7,11 @@ const baseHtml = (content) => `
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Ropa</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/views/styles.css">
 </head>
 <body>
     ${content}
+    <script type="module" src="/utils/firebase.js"></script>
 </body>
 </html>
 `

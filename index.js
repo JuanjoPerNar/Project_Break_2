@@ -1,5 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
+const session = require('express-session')
+const path = require('path')
 const { dbConnection } = require('./config/db')
 const routes = require('./routes/productRoutes')
 const methodOverride = require('method-override')
@@ -9,15 +11,22 @@ dotenv.config()
 dbConnection()
 
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static('public'))
 app.use(express.json())
 app.use(methodOverride('_method'))
+
+app.use(express.static(path.join(__dirname, 'public')))
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'secretKey',
+  resave: false,
+  saveUninitialized: false
+}))
+
+app.use('/', routes)
 
 app.get('/', (req, res) => {
   res.redirect('/products')
 })
-
-app.use('/', routes)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
