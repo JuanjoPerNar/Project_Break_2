@@ -1,7 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const { dbConnection } = require('./config/db')
-const productRoutes = require('./routes/productRoutes')
+const routes = require('./routes/productRoutes')
 const methodOverride = require('method-override')
 
 const app = express()
@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
   res.redirect('/products')
 })
 
-app.use('/', productRoutes)
+app.use('/', routes)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
