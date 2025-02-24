@@ -19,7 +19,7 @@ const register = (req, res) => {
 }
 
 const logout = (req, res) => {
-    res.send('Logout se debe manejar en el cliente')
+    res.redirect('/login')
 }
 
 module.exports = {

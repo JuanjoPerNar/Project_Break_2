@@ -16,7 +16,8 @@ const baseHtml = (content) => `
 </html>
 `
 const getNavBar = () => `
-<nav>
+<header>
+  <nav>
     <ul>
       <li><a href="/products">Todos</a></li>
       <li><a href="/products?category=Camisetas">Camisetas</a></li>
@@ -25,8 +26,11 @@ const getNavBar = () => `
       <li><a href="/products?category=Accesorios">Accesorios</a></li>
       <li><a href="/dashboard">Dashboard</a></li>
       <li><a href="/logout">Cerrar sesión</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/register">Registro</a></li>
     </ul>
-</nav>
+  </nav>
+</header>
 `
 
 const getProductCards = (products) => {
@@ -38,7 +42,7 @@ const getProductCards = (products) => {
             <h2>${product.name}</h2>
             <p>${product.description}</p>
             <p>${product.price}€</p>
-            <a href="/products/${product._id}">Ver detalle</a>
+            <a href="/products/${product._id}" class="btn-style">Ver detalle</a>
         </div>
         `
     }
@@ -74,10 +78,10 @@ const showProductById = async (req, res) => {
                 <h2>${product.name}</h2>
                 <p>${product.description}</p>
                 <p>${product.price}€</p>
-                <a href="/products">Volver a la tienda</a>
-                <a href="/dashboard/${product._id}/edit">Editar Producto</a>
+                <a href="/products" class="btn-style">Volver a la tienda</a>
+                <a href="/dashboard/${product._id}/edit" class="btn-style">Editar Producto</a>
                 <form action="/dashboard/${product._id}/delete?_method=delete" method="post">
-                    <button type="submit">Eliminar Producto</button>
+                    <button type="submit" class="btn-style">Eliminar Producto</button>
                 </form>
             </div>
         `
@@ -90,8 +94,8 @@ const showProductById = async (req, res) => {
 
 const showNewProduct = (req, res) => {
     const formHtml = `
-        <div class="form-container">
-            <h2>Agregar Nuevo Producto</h2>
+        <div class="container">
+            <h1>Agregar Nuevo Producto</h1>
             <form action="/dashboard" method="post">
                 <label for="name">Nombre:</label>
                 <input type="text" name="name" id="name" required placeholder="Nombre del producto">
@@ -116,9 +120,9 @@ const showNewProduct = (req, res) => {
                 <label for="price">Precio (€):</label>
                 <input type="number" name="price" id="price" required placeholder="Precio del producto">
 
-                <button type="submit">Agregar Producto</button>
+                <button type="submit" class="btn-style">Agregar Producto</button>
             </form>
-            <a href="/products">Volver</a>
+            <a href="/products" class="btn-style">Volver</a>
         </div>
     `
 
@@ -150,37 +154,37 @@ const showEditProduct = async (req, res) => {
             return res.status(404).send(baseHtml('<h1>Producto no encontrado</h1>'))
         }
         const formHtml = `
-            <div class="form-container">
-                <h2>Editar Producto</h2>
-                <form action="/dashboard/${product._id}?_method=put" method="post">
-                    <label for="name">Nombre:</label>
-                    <input type="text" name="name" id="name" value="${product.name}" required placeholder="Nombre del producto">
+           <div class="container">
+             <h1>Editar Producto</h1>
+             <form action="/dashboard/${product._id}?_method=put" method="post">
+               <label for="name">Nombre:</label>
+               <input type="text" name="name" id="name" value="${product.name}" required placeholder="Nombre del producto">
 
-                    <label for="description">Descripción:</label>
-                    <textarea name="description" id="description" required placeholder="Descripción del producto">${product.description}</textarea>
+               <label for="description">Descripción:</label>
+               <textarea name="description" id="description" required placeholder="Descripción del producto">${product.description}</textarea>
 
-                    <label for="image">URL de Imagen:</label>
-                    <input type="text" name="image" id="image" value="${product.image}" required placeholder="Subir imagen">
+               <label for="image">URL de Imagen:</label>
+               <input type="text" name="image" id="image" value="${product.image}" required placeholder="Subir imagen">
 
-                    <label for="category">Categoría:</label>
-                    <select name="category" id="category" required>
-                        <option value="Camisetas" ${product.category === 'Camisetas' ? 'selected' : ''}>Camisetas</option>
-                        <option value="Pantalones" ${product.category === 'Pantalones' ? 'selected' : ''}>Pantalones</option>
-                        <option value="Zapatos" ${product.category === 'Zapatos' ? 'selected' : ''}>Zapatos</option>
-                        <option value="Accesorios" ${product.category === 'Accesorios' ? 'selected' : ''}>Accesorios</option>
-                    </select>
+               <label for="category">Categoría:</label>
+               <select name="category" id="category" required>
+                 <option value="Camisetas" ${product.category === 'Camisetas' ? 'selected' : ''}>Camisetas</option>
+                 <option value="Pantalones" ${product.category === 'Pantalones' ? 'selected' : ''}>Pantalones</option>
+                 <option value="Zapatos" ${product.category === 'Zapatos' ? 'selected' : ''}>Zapatos</option>
+                 <option value="Accesorios" ${product.category === 'Accesorios' ? 'selected' : ''}>Accesorios</option>
+               </select>
 
-                    <label for="size">Talla:</label>
-                    <input type="text" name="size" id="size" value="${product.size}" placeholder="Tall del producto">
+               <label for="size">Talla:</label>
+               <input type="text" name="size" id="size" value="${product.size}" placeholder="Talla del producto">
 
-                    <label for="price">Precio (€):</label>
-                    <input type="number" name="price" id="price" value="${product.price}" required placeholder="Precio del producto">
+               <label for="price">Precio (€):</label>
+               <input type="number" name="price" id="price" value="${product.price}" required placeholder="Precio del producto">
 
-                    <button type="submit">Actualizar Producto</button>
-                </form>
-                <a href="/products/${product._id}">Cancelar</a>
-            </div>
-        `
+               <button type="submit" class="btn-style">Actualizar Producto</button>
+             </form>
+             <a href="/products/${product._id}" class="btn-style">Cancelar</a>
+           </div>
+    `
         const html = baseHtml(getNavBar() + formHtml)
         res.send(html)
     } catch (error) {

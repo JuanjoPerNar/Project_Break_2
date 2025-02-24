@@ -35,6 +35,9 @@ const verifyFirebaseToken = async (req, res, next) => {
     next()
   } catch (error) {
     console.error("Token verification error:", error)
+    if (error.code === 'auth/id-token-expired') {
+      return res.redirect('/login?message=La sesión ha caducado. Inicia sesión nuevamente')
+    }
     return res.status(401).json({ message: 'Invalid token', error })
   }
 }

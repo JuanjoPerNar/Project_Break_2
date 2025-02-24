@@ -8,26 +8,27 @@
 </head>
 <body>
   <header>
-    <h1>Iniciar Sesión</h1>
     <nav>
       <ul>
         <li><a href="/login">Login</a></li>
-        <li><a href="(/register)">Registro</a></li>
+        <li><a href="/register">Registro</a></li>
         <li><a href="/products">Productos</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
       </ul>
     </nav>
   </header>
-  <form id="login-form" action="/login" method="post">
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email" required placeholder="Introduce tu correo electrónico">
-
-    <label for="password">Contraseña:</label>
-    <input type="password" name="password" id="password" required placeholder="Introduce una contraseña">
-    
-    <button type="submit">Login</button>
-  </form>
-
+  <div class="container">
+    <h1>Iniciar Sesión</h1>
+    <form id="login-form" action="/login" method="post">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="Introduce tu correo electrónico">
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required placeholder="Introduce tu contraseña">
+      <button type="submit" class="btn-style">Login</button>
+    </form>
+    <div class="auth-links">
+      <a href="/register">¿No tienes cuenta? Regístrate aquí</a>
+    </div>
+  </div>
   <script type="module" src="/utils/firebase.js"></script>
   <script type="module" src="/js/configLogin.js"></script>
 </body>
