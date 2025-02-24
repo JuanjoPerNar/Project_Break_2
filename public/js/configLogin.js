@@ -1,4 +1,3 @@
-
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"
 import { app } from "/utils/firebase.js"
 
@@ -28,13 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("login-form")
   if (loginForm) {
     console.log("Login form found");
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault()
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault()
       const email = document.getElementById("email").value
       const password = document.getElementById("password").value
       console.log("Submit intercepted:", email, password)
       loginUser(email, password)
-    });
+    })
   } else {
     console.log("No login form found")
   }

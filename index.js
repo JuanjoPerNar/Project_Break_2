@@ -3,6 +3,8 @@ const dotenv = require('dotenv')
 const session = require('express-session')
 const path = require('path')
 const methodOverride = require('method-override')
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./docs/swagger.js')
 const { dbConnection } = require('./config/db')
 const productRoutes = require('./routes/productRoutes')
 const authRoutes = require('./routes/authRoutes')
@@ -31,6 +33,8 @@ app.use(session({
 app.use('/', authRoutes)
 app.use('/', viewRoutes)
 app.use('/', productRoutes)
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.get('/', (req, res) => {
   res.redirect('/products')

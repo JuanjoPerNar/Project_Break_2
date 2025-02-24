@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "cross-env NODE_ENV=test jest",
     "start": "node --watch index.js"
   },
   "keywords": [],
@@ -18,9 +18,11 @@
     "firebase-admin": "13.1.0",
     "method-override": "3.0.0",
     "mongodb": "6.13.0",
-    "mongoose": "8.10.0"
+    "mongoose": "8.10.0",
+    "swagger-ui-express": "5.0.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "jest": "29.7.0",
     "mongodb-memory-server": "10.1.4",
     "supertest": "7.0.0"

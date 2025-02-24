@@ -23,6 +23,8 @@ const getNavBar = () => `
       <li><a href="/products?category=Pantalones">Pantalones</a></li>
       <li><a href="/products?category=Zapatos">Zapatos</a></li>
       <li><a href="/products?category=Accesorios">Accesorios</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/logout">Cerrar sesión</a></li>
     </ul>
 </nav>
 `

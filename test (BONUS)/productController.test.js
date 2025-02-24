@@ -7,9 +7,10 @@ const methodOverride = require('method-override')
 const routes = require('../routes/productRoutes')
 const Product = require('../models/Products')
 
+dotenv.config()
+
 let mongoServer
 
-dotenv.config()
 const app = express()
 app.use(express.urlencoded({ extended: true}))
 app.use(express.json())

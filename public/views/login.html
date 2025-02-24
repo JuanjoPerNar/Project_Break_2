@@ -7,7 +7,17 @@
   <link rel="stylesheet" href="/views/styles.css">
 </head>
 <body>
-  <h1>Iniciar Sesión</h1>
+  <header>
+    <h1>Iniciar Sesión</h1>
+    <nav>
+      <ul>
+        <li><a href="/login">Login</a></li>
+        <li><a href="(/register)">Registro</a></li>
+        <li><a href="/products">Productos</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+      </ul>
+    </nav>
+  </header>
   <form id="login-form" action="/login" method="post">
     <label for="email">Email:</label>
     <input type="email" name="email" id="email" required placeholder="Introduce tu correo electrónico">
