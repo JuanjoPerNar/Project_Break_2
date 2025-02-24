@@ -74,7 +74,7 @@ const showProductById = async (req, res) => {
                 <p>${product.price}€</p>
                 <a href="/products">Volver a la tienda</a>
                 <a href="/dashboard/${product._id}/edit">Editar Producto</a>
-                <form action="/dashboard/${product._id}/delete?_method=DELETE" method="POST">
+                <form action="/dashboard/${product._id}/delete?_method=delete" method="post">
                     <button type="submit">Eliminar Producto</button>
                 </form>
             </div>
@@ -90,15 +90,15 @@ const showNewProduct = (req, res) => {
     const formHtml = `
         <div class="form-container">
             <h2>Agregar Nuevo Producto</h2>
-            <form action="/dashboard" method="POST">
+            <form action="/dashboard" method="post">
                 <label for="name">Nombre:</label>
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="name" id="name" required placeholder="Nombre del producto">
 
                 <label for="description">Descripción:</label>
-                <textarea name="description" id="description" required></textarea>
+                <textarea name="description" id="description" required placeholder="Descripción del producto"></textarea>
 
                 <label for="image">URL de Imagen:</label>
-                <input type="text" name="image" id="image" required>
+                <input type="text" name="image" id="image" required placeholder="Subir imagen">
 
                 <label for="category">Categoría:</label>
                 <select name="category" id="category" required>
@@ -109,10 +109,10 @@ const showNewProduct = (req, res) => {
                 </select>
 
                 <label for="size">Talla:</label>
-                <input type="text" name="size" id="size">
+                <input type="text" name="size" id="size" placeholder="Talla">
 
                 <label for="price">Precio (€):</label>
-                <input type="number" name="price" id="price" required>
+                <input type="number" name="price" id="price" required placeholder="Precio del producto">
 
                 <button type="submit">Agregar Producto</button>
             </form>
@@ -150,15 +150,15 @@ const showEditProduct = async (req, res) => {
         const formHtml = `
             <div class="form-container">
                 <h2>Editar Producto</h2>
-                <form action="/dashboard/${product._id}?_method=PUT" method="POST">
+                <form action="/dashboard/${product._id}?_method=put" method="post">
                     <label for="name">Nombre:</label>
-                    <input type="text" name="name" id="name" value="${product.name}" required>
+                    <input type="text" name="name" id="name" value="${product.name}" required placeholder="Nombre del producto">
 
                     <label for="description">Descripción:</label>
-                    <textarea name="description" id="description" required>${product.description}</textarea>
+                    <textarea name="description" id="description" required placeholder="Descripción del producto">${product.description}</textarea>
 
                     <label for="image">URL de Imagen:</label>
-                    <input type="text" name="image" id="image" value="${product.image}" required>
+                    <input type="text" name="image" id="image" value="${product.image}" required placeholder="Subir imagen">
 
                     <label for="category">Categoría:</label>
                     <select name="category" id="category" required>
@@ -169,10 +169,10 @@ const showEditProduct = async (req, res) => {
                     </select>
 
                     <label for="size">Talla:</label>
-                    <input type="text" name="size" id="size" value="${product.size}">
+                    <input type="text" name="size" id="size" value="${product.size}" placeholder="Tall del producto">
 
                     <label for="price">Precio (€):</label>
-                    <input type="number" name="price" id="price" value="${product.price}" required>
+                    <input type="number" name="price" id="price" value="${product.price}" required placeholder="Precio del producto">
 
                     <button type="submit">Actualizar Producto</button>
                 </form>

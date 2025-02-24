@@ -2,9 +2,11 @@ const express = require('express')
 const dotenv = require('dotenv')
 const session = require('express-session')
 const path = require('path')
-const { dbConnection } = require('./config/db')
-const routes = require('./routes/productRoutes')
 const methodOverride = require('method-override')
+const { dbConnection } = require('./config/db')
+const productRoutes = require('./routes/productRoutes')
+const authRoutes = require('./routes/authRoutes')
+const viewRoutes = require('./routes/viewRoutes')
 
 const app = express()
 dotenv.config()
@@ -19,10 +21,16 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(session({
   secret: process.env.SESSION_SECRET || 'secretKey',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+  secure: process.env.NODE_ENV === 'production',
+  maxAge: 1000 * 60 * 60 * 24
+  }
 }))
 
-app.use('/', routes)
+app.use('/', authRoutes)
+app.use('/', viewRoutes)
+app.use('/', productRoutes)
 
 app.get('/', (req, res) => {
   res.redirect('/products')

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Tienda de Ropa</title>
+  <!-- Se carga la hoja de estilos desde /views/styles.css -->
+  <link rel="stylesheet" href="/views/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Registro</h1>
+  </header>
+  <main>
+    <form id="register-form" action="/register" method="post">
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" name="name" required placeholder="Introduce tu nombre completo">
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="Introduce tu correo electrónico">
+      
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required placeholder="Introduce una contraseña">
+      
+      <button type="submit">Registrarse</button>
+    </form>
+    <p>¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a></p>
+  </main>
+  
+  <script type="module" src="/utils/firebase.js"></script>
+  <script type="module" src="/js/configLogin.js"></script>
+</body>
+</html>
