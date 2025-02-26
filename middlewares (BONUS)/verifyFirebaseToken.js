@@ -60,7 +60,7 @@ const verifyFirebaseToken = async (req, res, next) => {
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Sesión Expirada</title>
+          <title>Sesión Caducada</title>
           <link rel="stylesheet" href="/views/styles.css">
         </head>
         <body>
